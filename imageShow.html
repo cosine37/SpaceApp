@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+	.slidecontainer {
+		width: 100%;
+		outline: none;
+	}
+	.slider{
+		width: 1200px;
+		background: #d3d3d3;
+		outline: none;
+	}
+</style>
+<body>
+	<script type="text/javascript">
+		function numToDay(days) {
+			var year=[2010,2011,2012,2013,2014,2015,2016,2017];
+			var daysOfMonth=[0,31,28,31,30,31,30,31,31,30,31,30,31];
+			var i;
+			var ans="";
+			for (i=0;i<8;i++){
+				if (year[i]%4==0){
+					daysOfMonth[2]=29;
+					if (days > 366){
+						days = days-366;
+						continue;
+					}
+				} else {
+					daysOfMonth[2]=28;
+					if (days > 365){
+						days = days-365;
+						continue;
+					}
+				}
+				for (j=1;j<=12;j++){
+					if (days<=daysOfMonth[j]){
+						ans = year[i].toString();
+						if (j<10){
+							ans = ans+"0"+j.toString();
+						} else {
+							ans = ans+j.toString();
+						}
+						if (days<10){
+							ans = ans+"0"+days.toString();
+						} else {
+							ans = ans+days.toString();
+						}
+						return ans;
+					} else {
+						days = days-daysOfMonth[j];
+					}
+				}
+			}
+		}
+	</script>
+	<table>
+	<div class="slidecontainer">
+		<tr>
+			<td>
+				<img id="img1" src="Pic/20100926.png">
+			</td>
+			<td>
+				<img id="img2" src="sealevel.png" style="width: 640px; height: 480px">
+			</td>
+		</tr>
+		<tr>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<script type="text/javascript">
+					function change() {
+						//var fileNames=["","20101114.jpg","20101213.jpg","20101227.jpg","20110102.jpg","20110314.jpg","20110320.jpg","20120412.jpg","20120426.jpg","20120503.jpg","20150414.jpg","20150505.jpg","20160130.jpg","20160203.jpg","20160312.jpg","20160326.jpg","20170128.jpg","20171003.jpg","20171112.jpg","20171126.jpg","20171215.jpg","20180131.jpg","20180202.jpg","20180313.jpg","20180327.jpg"];
+						var value = document.getElementById("range").value;
+						var date = numToDay(value);
+                        var srcName = "Pic/" + date + ".png";
+                        document.getElementById("img1").src = srcName;
+					}
+				</script>
+				<input id="range" class="slider" type="range" min="1" max="2922" value="0" oninput="change()"/>
+			<td>
+		</tr>
+		
+	</div>
+		<tr>
+			
+		</tr>
+	
+	</table>
+	
+</body>
+</html>
